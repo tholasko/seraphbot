@@ -1,0 +1,32 @@
+{
+  "name": "seraphbot",
+  "version": "1.0.0",
+  "description": "Seraph is a Discord bot made by tholasko.",
+  "main": "./src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tholasko/seraphbot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "typescript"
+  ],
+  "author": "tholasko",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/tholasko/seraphbot/issues"
+  },
+  "homepage": "https://github.com/tholasko/seraphbot#readme",
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "discord.js": "^14.13.0"
+  }
+}
