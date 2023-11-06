@@ -11,7 +11,7 @@ module.exports = {
 			option.setName('user')
 			.setDescription('Which user\'s balance to view.')),
 	async execute(interaction:ChatInputCommandInteraction) {
-        let user:any = interaction.options.getUser('user');
+        let user:User|null = interaction.options.getUser('user');
 		let economy:Model|null;
 		try { 
 			economy = user instanceof User ? await Models.Economy.findOne({ where: { guildID: interaction.guildId, userID: user.id } }) : await Models.Economy.findOne({ where: { guildID: interaction.guildId, userID: interaction.user.id } });
@@ -24,8 +24,8 @@ module.exports = {
 			await Models.Economy.create({
 				guildID: interaction.guildId,
 				userID: user ?? interaction.user.id,
-				balance: 10,
-				dailyLastClaimed: 0
+				balance: 0,
+				dailyLastClaimed: new Date(new Date().getTime() - 86400000)
 			});
 
 			try { 

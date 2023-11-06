@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model } from 'sequelize';
 import { ChatInputCommandInteraction } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Models } from '../..';
@@ -20,8 +20,8 @@ module.exports = {
 			await Models.Economy.create({
 				guildID: interaction.guildId,
 				userID: interaction.user.id,
-				balance: 10,
-				dailyLastClaimed: 0
+				balance: 0,
+				dailyLastClaimed: new Date(new Date().getTime() - 86400000)
 			});
 
 			try { 
@@ -32,10 +32,14 @@ module.exports = {
 			}
 		}
 
-		if ((economy!.get('dailyLastClaimed') as Date).getTime() - (DataTypes.NOW() as unknown as Date).getTime()) {
+		if ((economy!.get('dailyLastClaimed') as Date).getTime() - new Date().getTime() <= -86400000) {
+			economy!.set('balance', economy!.get('balance') as number + 10);
+			economy!.set('dailyLastClaimed', new Date())
+			economy!.save();
 
+			await interaction.reply({ content: `You now have $${economy!.get('balance')}`, ephemeral: true });
+		} else {
+			await interaction.reply({ content: `You must wait ${(new Date((economy!.get('dailyLastClaimed') as Date).getTime() - new Date().getTime() + 86400000)).getUTCHours()} hours to claim again.`, ephemeral: true });
 		}
-
-		await interaction.reply({ content: `You have $${economy!.get('dailyLastClaimed')}`, ephemeral: true });
 	}
 };

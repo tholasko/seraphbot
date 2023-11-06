@@ -20,7 +20,7 @@ module.exports = {
 		if (member instanceof GuildMember) {
 			let perms:string|PermissionsBitField = interaction.member!.permissions;
 			if (perms instanceof PermissionsBitField) {
-				if (perms.has(PermissionsBitField.Flags.KickMembers)) {
+				if (perms.has(PermissionsBitField.Flags.ModerateMembers)) {
 					let warnings:Array<Model> = await Models.Warns.findAll({ where: { guildID: interaction.guildId, userID: member.id } });
 					warnings.sort((a:any, b:any) => a.get('date') - b.get('date'));
 

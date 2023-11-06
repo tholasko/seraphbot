@@ -1,11 +1,11 @@
-import { CommandInteraction } from 'discord.js';
+import { ChatInputCommandInteraction } from 'discord.js';
 import { SlashCommandBuilder, EmbedBuilder } from '@discordjs/builders';
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('help')
 		.setDescription('Replies with a summary of all commands.'),
-	async execute(interaction:CommandInteraction) {
+	async execute(interaction:ChatInputCommandInteraction) {
 		if (!interaction.isCommand()) return;
 
 		let embed:EmbedBuilder = new EmbedBuilder()

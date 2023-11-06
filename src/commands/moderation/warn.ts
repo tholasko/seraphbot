@@ -17,9 +17,9 @@ module.exports = {
 		if (!interaction.isCommand()) return;
         let member = interaction.options.getMember('user')!;
 		if (member instanceof GuildMember) {
-			let perms:any = interaction.member!.permissions;
+			let perms:string|PermissionsBitField = interaction.member!.permissions;
 			if (perms instanceof PermissionsBitField) {
-				if (perms.has(PermissionsBitField.Flags.KickMembers)) {
+				if (perms.has(PermissionsBitField.Flags.ModerateMembers)) {
 					try {
                         await Models.Warns.create({
                             guildID: interaction.guildId,

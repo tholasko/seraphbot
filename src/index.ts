@@ -55,7 +55,7 @@ export const Models = {
 		},
 		userID: DataTypes.STRING,
 		balance: DataTypes.NUMBER,
-		dailyLastClaimed: DataTypes.DATEONLY
+		dailyLastClaimed: DataTypes.DATE
 	})
 
 };
