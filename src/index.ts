@@ -22,17 +22,13 @@ const sequelize:Sequelize = new Sequelize('database', dbUsername, dbPassword, {
 
 export const Models = {
 	Warns: sequelize.define('warns', {
-		guildID: {
-			type: DataTypes.STRING,
-			primaryKey: true
-		},
+		guildID: DataTypes.STRING,
 		userID: DataTypes.STRING,
 		reason: DataTypes.TEXT
 	}),
 	Settings: sequelize.define('settings', {
 		guildID: {
 			type: DataTypes.STRING,
-			unique: true,
 			primaryKey: true
 		},
 		autorole: {
@@ -49,10 +45,7 @@ export const Models = {
 		}
 	}),
 	Economy : sequelize.define('economy', {
-		guildID: {
-			type: DataTypes.STRING,
-			primaryKey: true
-		},
+		guildID: DataTypes.STRING,
 		userID: DataTypes.STRING,
 		balance: DataTypes.NUMBER,
 		dailyLastClaimed: DataTypes.DATE
@@ -72,7 +65,7 @@ for (const folder of commandFolders) {
 		if ('data' in command && 'execute' in command) {
 			client.commands.set(command.data.name, command);
 		} else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+			console.warn(`The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
 	}
 }

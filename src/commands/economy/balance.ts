@@ -36,6 +36,6 @@ module.exports = {
 			}
 		}
 
-		await interaction.reply({ content: `You have $${economy!.get('balance')}`, ephemeral: true });
+		await interaction.reply({ content: `${user instanceof User ? `<@${interaction.options.getUser('user')!.id}> has` : 'You have'} $${economy!.get('balance')}`, ephemeral: true });
 	}
 };
