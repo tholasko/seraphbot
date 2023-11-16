@@ -19,6 +19,15 @@ Seraph is a general-purpose discord bot written in Typescript. It is intended to
     git clone https://github.com/tholasko/seraphbot.git
 ### Enter the bots directory and enter:
     npm install
+### Create the config.json file:
+    {
+	    "token": "INSERT-BOT-TOKEN",
+	    "clientId": "INSERT-BOT-CLIENT-ID",
+	    "dbUsername": "seraphbot",
+	    "dbPassword": "CREATE-DATABASE-PASSWORD",
+	    "dbPath": "INSERT-FULL-PATH-TO-DB-FILE"
+    }
+> Note: `token` and `clientId` are obtained on the Discord developer site. `dbPassword` can be anything, and `dbPath` should be the desired path where the database should reside.
 ### Run the bot:
     npm run start
 ## Credits
